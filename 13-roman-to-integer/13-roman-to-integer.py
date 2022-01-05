@@ -20,12 +20,10 @@ class Solution:
         while len(s) != 0:
             if s[0:2] in rec.keys():
                 out += int(rec[s[0:2]])
-                print(s[0:2], int(rec[s[0:2]]))
                 s = s[2::]
                 continue
             if s[0:1] in rec.keys():
                 out += int(rec[s[0:1]])
-                print(s[0:1], int(rec[s[0:1]]))
                 s = s[1::]
                 continue
         return out
