@@ -18,11 +18,6 @@ class Solution:
         
         out = 0
         while len(s) != 0:
-            if s[0:3] in rec.keys():
-                out += int(rec[s[0:3]])
-                print(s[0:3], int(rec[s[0:3]]))
-                s = s[3::]
-                continue
             if s[0:2] in rec.keys():
                 out += int(rec[s[0:2]])
                 print(s[0:2], int(rec[s[0:2]]))
