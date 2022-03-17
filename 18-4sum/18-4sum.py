@@ -6,11 +6,21 @@ class Solution:
         if len(nums) > 3:
             
             res = []
-            for ix1 in range(0, len(nums) - 3, 1):
-                if ix1 > 0 and nums[ix1] == nums[ix1 - 1]:
+            
+            dix1 = set()
+            for ix1 in range(0, len(nums) - 3, 1): 
+                if nums[ix1] not in dix1:
+                    dix1 = dix1 | set([nums[ix1]])
+                else:
                     continue
                 
+                dix2 = set()
                 for ix2 in range(ix1 + 1, len(nums) - 2, 1):
+                    if nums[ix2] not in dix2:
+                        dix2 = dix2 | set([nums[ix2]])
+                    else:
+                        continue
+                    
                     ix3 = ix2 + 1
                     ix4 = len(nums) - 1
                     while ix4 > ix3:
