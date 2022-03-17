@@ -14,6 +14,6 @@ class Solution:
         
         for ix in range(len(remaining)):
             remaining[0], remaining[ix] = remaining[ix], remaining[0]
-            c1 = current + [remaining[0]]
-            self.backtrack(remaining[1::], c1, result)
+            current_copy = current + [remaining[0]]
+            self.backtrack(remaining[1::], current_copy, result)
             remaining[0], remaining[ix] = remaining[ix], remaining[0]
