@@ -17,8 +17,6 @@ class Solution:
         
         res = list(mapping[digits[0]])
         
-        print(res)
-        
         for dx, d in enumerate(digits[1::]):
             res = [old + new for old in res for new in mapping[d]]
         
