@@ -9,6 +9,7 @@ class Solution:
             for ix1 in range(0, len(nums) - 3, 1):
                 if ix1 > 0 and nums[ix1] == nums[ix1 - 1]:
                     continue
+                
                 for ix2 in range(ix1 + 1, len(nums) - 2, 1):
                     ix3 = ix2 + 1
                     ix4 = len(nums) - 1
