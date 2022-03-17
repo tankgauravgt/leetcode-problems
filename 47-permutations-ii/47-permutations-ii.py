@@ -5,12 +5,12 @@ class Solution:
         result = []
         current = []
         self.backtrack(nums, current, result)
-        return list(set(map(lambda e: tuple(e), result)))
+        return set(result)
     
     
     def backtrack(self, remaining, current, result):
         if len(remaining) == 0:
-            result += [current]
+            result += [tuple(current)]
             return
         
         for ix in range(len(remaining)):
