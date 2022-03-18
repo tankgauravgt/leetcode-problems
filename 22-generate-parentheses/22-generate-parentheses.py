@@ -10,9 +10,6 @@ class Solution:
     
     
     def backtrack(self, n, current):
-        
-        # print(f"n: {n}, current: {current}")
-        
         if n == 0:
             if self.check(current):
                 self.res += [current]
@@ -33,5 +30,4 @@ class Solution:
                     stk.pop()
                 else:
                     stk += [c]
-        
         return len(stk) == 0
