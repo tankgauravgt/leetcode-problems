@@ -43,7 +43,7 @@ class Solution:
             return None
         elif len(lists) == 1:
             return lists[0]
-        elif len(lists) < 50:
+        elif len(lists) < 100:
             temp = lists[0]
             for ix in range(1, len(lists), 1):
                 temp = self.merge2Lists(temp, lists[ix])
@@ -51,15 +51,15 @@ class Solution:
         else:
             
             temp = {}
-            for ix in range(25):
+            for ix in range(100):
                 temp[ix] = lists[ix]
             
-            for ix in range(25):
-                for i in range(ix+25, len(lists), 25):
+            for ix in range(100):
+                for i in range(ix+100, len(lists), 100):
                     temp[ix] = self.merge2Lists(temp[ix], lists[i])
             
             txx = temp[0]
-            for i in range(1, 25):
+            for i in range(1, 100):
                 txx = self.merge2Lists(txx, temp[i])
                     
         return txx
