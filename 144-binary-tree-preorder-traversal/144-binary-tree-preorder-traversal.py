@@ -11,10 +11,9 @@ class Solution:
         stk = [root]
         
         while len(stk) > 0:
-            
             ptr = stk.pop()
             if ptr != None:
-                out += [ptr.val]
+                out = out + [ptr.val]
                 if ptr.right != None:
                     stk += [ptr.right]
                 if ptr.left != None:
