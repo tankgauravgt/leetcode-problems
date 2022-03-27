@@ -8,27 +8,16 @@ class Solution:
     
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         
-        # output:
-        outdata = []
-        
-        # context manager
-        context = []
+        out = []
+        stk = []
         
         ptr = root
-        while len(context) > 0 or ptr != None:
-            
-            # process current node and its left subtree recursively.
+        while len(stk) > 0 or ptr != None:
             while ptr != None:
-                context += [{'node': ptr}]
+                stk += [ptr]
                 ptr = ptr.left
-            
-            # take last element:
-            ptr = context.pop()['node']
-
-            # store values:
-            outdata += [ptr.val]
-            
-            # process right element:
+            ptr = stk.pop()
+            out += [ptr.val]
             ptr = ptr.right
             
-        return outdata
+        return out
