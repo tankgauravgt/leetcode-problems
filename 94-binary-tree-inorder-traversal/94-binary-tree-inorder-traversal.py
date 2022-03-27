@@ -6,12 +6,29 @@
 #         self.right = right
 class Solution:
     
-    def __init__(self):
-        self.data = []
-    
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        if root != None:
-            self.inorderTraversal(root.left)
-            self.data += [root.val]
-            self.inorderTraversal(root.right)
-        return self.data
+        
+        # output:
+        outdata = []
+        
+        # context manager
+        context = []
+        
+        ptr = root
+        while len(context) > 0 or ptr != None:
+            
+            # process current node and its left subtree recursively.
+            while ptr != None:
+                context += [{'node': ptr}]
+                ptr = ptr.left
+            
+            # take last element:
+            ptr = context.pop()['node']
+
+            # store values:
+            outdata += [ptr.val]
+            
+            # process right element:
+            ptr = ptr.right
+            
+        return outdata
