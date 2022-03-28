@@ -7,10 +7,16 @@ class Solution:
             return 0
         
         nums = sorted(nums)
-        
+
         count = 0
-        for lx in range(len(nums) - 2):
-            for cx in range(lx+1, len(nums) - 1):
-                count += (bisect.bisect_left(nums, target - (nums[lx] + nums[cx]), cx+1) - 1 - cx)
-                
+        for fx in range(len(nums) - 2):
+            lx = fx + 1
+            rx = len(nums) - 1
+            while lx < rx:
+                if nums[lx] + nums[rx] >= target - nums[fx]:
+                    rx = rx - 1
+                else:
+                    count = count + (rx - lx)
+                    lx = lx + 1
+                    
         return count
