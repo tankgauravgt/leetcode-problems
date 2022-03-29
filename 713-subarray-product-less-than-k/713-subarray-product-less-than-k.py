@@ -11,6 +11,4 @@ class Solution:
                 lx = lx + 1
             res += (rx - lx + 1)
         
-            # print(nums, k, nums[lx:rx+1])
-        
         return res
