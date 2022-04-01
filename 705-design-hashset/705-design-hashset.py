@@ -44,19 +44,19 @@ class MyHashSet:
 
     def __init__(self):
         self.rec = []
-        for ix in range(1000):
+        for ix in range(2048):
             self.rec += [Bucket()]
             
     def add(self, key: int) -> None:
-        self.rec[key % 1000].insert(key)
+        self.rec[key % 2048].insert(key)
         return
 
     def remove(self, key: int) -> None:
-        self.rec[key % 1000].delete(key)
+        self.rec[key % 2048].delete(key)
         return
         
     def contains(self, key: int) -> bool:
-        return self.rec[key % 1000].contains(key)
+        return self.rec[key % 2048].contains(key)
     
 
 # Your MyHashSet object will be instantiated and called as such:
