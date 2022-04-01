@@ -29,19 +29,19 @@ class Solution:
         
         self.temp = []
         self.inorder(candidate)
-        cd_iot = self.temp.copy()
+        cd_iot = self.temp
         
         self.temp = []
         self.inorder(root)
-        rf_iot = self.temp.copy()
+        rf_iot = self.temp
         
         self.temp = []
         self.preorder(candidate)
-        cd_pot = self.temp.copy()
+        cd_pot = self.temp
         
         self.temp = []
         self.preorder(root)
-        rf_pot = self.temp.copy()
+        rf_pot = self.temp
         
         if (cd_iot == rf_iot) and (cd_pot == rf_pot):
             return True
