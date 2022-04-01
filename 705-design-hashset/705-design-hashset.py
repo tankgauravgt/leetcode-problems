@@ -14,6 +14,7 @@ class Bucket:
         if not self.contains(val):
             self.head = ListNode(val, self.head)
         
+        
     def contains(self, val):
         tx = self.head
         while tx:
@@ -27,8 +28,8 @@ class Bucket:
         if self.head == None:
             return
         
-        if self.head and (not self.head.next) and self.head.val == val:
-            self.head = None
+        if self.head and self.head.val == val:
+            self.head = self.head.next
             return
 
         tx = self.head
@@ -43,19 +44,19 @@ class MyHashSet:
 
     def __init__(self):
         self.rec = []
-        for ix in range(100000):
+        for ix in range(1000):
             self.rec += [Bucket()]
             
     def add(self, key: int) -> None:
-        self.rec[key % 100000].insert(key)
+        self.rec[key % 1000].insert(key)
         return
 
     def remove(self, key: int) -> None:
-        self.rec[key % 100000].delete(key)
+        self.rec[key % 1000].delete(key)
         return
         
     def contains(self, key: int) -> bool:
-        return self.rec[key % 100000].contains(key)
+        return self.rec[key % 1000].contains(key)
     
 
 # Your MyHashSet object will be instantiated and called as such:
