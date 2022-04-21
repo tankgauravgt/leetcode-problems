@@ -5,9 +5,9 @@ class Solution:
         counter = 0
         for ix, n in enumerate(nums):
             if n in rec:
-                counter += len(rec[n])
-                rec[n] += [ix]
+                counter += rec[n]
+                rec[n] += 1
             else:
-                rec[n] = [ix]
+                rec[n] = 1
         
         return counter
