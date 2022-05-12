@@ -6,6 +6,9 @@ class Solution:
         out = []
         for lx, n in enumerate(nums):
             
+            if lx > 0 and nums[lx - 1] == n:
+                continue
+            
             cx = lx + 1
             rx = len(nums) - 1
             while cx < rx:
