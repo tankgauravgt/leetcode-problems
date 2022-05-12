@@ -19,6 +19,8 @@ class Solution:
                     rx = rx - 1
                 else:
                     out += [(nums[lx], nums[cx], nums[rx])]
+                    while cx < rx and nums[cx] == nums[cx + 1]:
+                        cx = cx + 1
                     cx = cx + 1
         
-        return set(out)
+        return out
