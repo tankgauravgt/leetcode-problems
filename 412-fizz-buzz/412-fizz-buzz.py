@@ -1,14 +1,15 @@
 class Solution:
+    
     def fizzBuzz(self, n: int) -> List[str]:
-        answer = []
-        for ix in range(1, n+1):
-            out = ''
-            if ix % 3 == 0:
-                out += 'Fizz'
-            if ix % 5 == 0:
-                out += 'Buzz'
-            if out == '':
-                answer.append(str(ix))
+        
+        def func(k):
+            if (k % 3) and (k % 5):
+                return str(k)
+            elif (k % 3 == 0) and (k % 5 == 0):
+                return 'FizzBuzz'
+            elif (k % 3 == 0) and (k % 5):
+                return 'Fizz'
             else:
-                answer.append(out)
-        return answer
+                return 'Buzz'
+        
+        return list(map(lambda x: func(x), range(1, n+1)))
