@@ -5,7 +5,7 @@ class Solution:
         
         lx = 0
         rx = len(s) - 1
-        rec = set('abcdefghijklmnopqrstuvwxyz') | set('abcdefghijklmnopqrstuvwxyz'.upper())
+        rec = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
         
         while lx < rx:
             if s[lx] not in rec:
