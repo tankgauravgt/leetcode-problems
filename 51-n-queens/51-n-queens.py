@@ -28,7 +28,7 @@ class Solution:
     
     def backtrack(self, row, N):
         if row == N:
-            self.result += [["".join(rarr) for rarr in self.mat]]
+            self.result.append(["".join(rarr) for rarr in self.mat])
         for cx in range(N):
             if not self.clash(row, cx, N):
                 self.mat[row][cx] = 'Q'
