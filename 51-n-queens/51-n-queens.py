@@ -1,21 +1,10 @@
 class Solution:        
     
-    def backtrack(self, row, N):
-        if row == N:
-            self.result.append(["".join(rarr) for rarr in self.mat])
-        for cx in range(N):
-            if not self.clash(row, cx, N):
-                self.mat[row][cx] = 'Q'
-                self.backtrack(row + 1, N)
-                self.mat[row][cx] = '.'
-    
-    
     def solveNQueens(self, n: int) -> List[List[str]]:
         
         out = []
         mat = [['.'] * n for ix in range(n)]        
-        
-        
+                
         # =======================================
         # check for clash if any:
         # =======================================
@@ -61,7 +50,5 @@ class Solution:
                     backtrack(row + 1, N)
                     mat[row][cx] = '.'
         
-        # call solveNQueens:
         backtrack(0, n)
-        
         return out
