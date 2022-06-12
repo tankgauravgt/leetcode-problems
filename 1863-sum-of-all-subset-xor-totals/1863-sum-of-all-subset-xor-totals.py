@@ -3,9 +3,10 @@ class Solution:
         
         res = 0
         buf = []
+        N = len(nums)
         def recurse(arr, k):
             nonlocal buf, res
-            if k == len(arr):
+            if k == N:
                 tmp = 0
                 for n in buf:
                     tmp ^= n
