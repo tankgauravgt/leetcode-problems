@@ -16,10 +16,12 @@ class Solution:
                 res.append("->".join(buf))
                 buf.pop()
                 return
-            if node:
-                buf.append(str(node.val))
+            buf.append(str(node.val))
+            if node.left:
                 recurse(node.left)
+            if node.right:
                 recurse(node.right)
-                buf.pop()            
+            buf.pop()
+            
         recurse(root)
         return res
