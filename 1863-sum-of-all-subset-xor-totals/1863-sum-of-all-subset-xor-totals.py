@@ -8,8 +8,8 @@ class Solution:
             if k == len(arr):
                 tmp = 0
                 for n in buf:
-                    tmp = (tmp ^ n)
-                res = res + tmp
+                    tmp ^= n
+                res += tmp
                 return
             buf.append(nums[k])
             recurse(arr, k + 1)
