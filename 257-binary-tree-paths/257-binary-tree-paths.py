@@ -13,17 +13,13 @@ class Solution:
             nonlocal buf, res
             if node and not node.left and not node.right:
                 buf.append(str(node.val))
-                res.append(buf.copy())
+                res.append("->".join(buf))
                 buf.pop()
                 return
-
-            buf.append(str(node.val))
-            if node.left:
+            if node:
+                buf.append(str(node.val))
                 recurse(node.left)
-            if node.right:
                 recurse(node.right)
-            buf.pop()
-        
-        if root:
-            recurse(root)
-        return list(map(lambda arr: "->".join(arr), res))
+                buf.pop()            
+        recurse(root)
+        return res
