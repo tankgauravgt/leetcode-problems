@@ -1,7 +1,24 @@
+import heapq
+
 class Solution:
     def largestPerimeter(self, nums: List[int]) -> int:
-        nums.sort()
-        for ix in range(len(nums) - 3, -1, -1):
-            if nums[ix] + nums[ix + 1] > nums[ix + 2]:
-                return sum(nums[ix:ix+3])
+        
+        nums = [-n for n in nums]
+        
+        heapq.heapify(nums)
+        
+        n3 = heapq.heappop(nums)
+        n2 = heapq.heappop(nums)
+        n1 = heapq.heappop(nums)
+        
+        if n1 + n2 < n3:
+            return -(n1 + n2 + n3)
+        
+        while nums:
+            n3 = n2
+            n2 = n1
+            n1 = heapq.heappop(nums)
+            if n1 + n2 < n3:
+                return -(n1 + n2 + n3)
+        
         return 0
