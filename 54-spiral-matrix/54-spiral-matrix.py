@@ -4,7 +4,6 @@ class Solution:
         memo = []
         def print_boundary(sx, ex, sy, ey, count):
             nonlocal memo
-            # print(sx, ex, sy, ey)
             if sx < ex and sy < ey:
                 if count % 2 == 0:
                     for ix in range(sx, ex):
