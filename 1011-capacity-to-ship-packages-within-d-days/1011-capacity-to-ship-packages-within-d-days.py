@@ -2,7 +2,6 @@ class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
         
         def feasible(cap):
-            nonlocal weights
             lx = 0
             for jx in range(days):
                 curr = 0
@@ -12,6 +11,8 @@ class Solution:
                         lx = lx + 1
                     else:
                         break
+                if lx >= len(weights):
+                    break
             return (lx >= len(weights))
         
         def binsearch(lx, rx):
