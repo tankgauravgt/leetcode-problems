@@ -12,7 +12,7 @@ class Solution:
         def dfs(o, c):
             nonlocal node
             if o:
-                if o.val == target.val:
+                if o is target:
                     node = c
                 dfs(o.left, c.left)
                 dfs(o.right, c.right)
