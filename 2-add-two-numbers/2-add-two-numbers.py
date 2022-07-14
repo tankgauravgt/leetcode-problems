@@ -46,10 +46,10 @@ class Solution:
 #         self.val = val
 #         self.next = next
         
-        rx = l1
         tx = l1
         L1 = l1
         L2 = l2
+        rx = None
         
         c = 0
         while l1 and l2:
@@ -60,7 +60,6 @@ class Solution:
             tx = l1
             l1 = l1.next
             l2 = l2.next
-            rx = L1
         
         while l1:
             s = l1.val + c
@@ -77,6 +76,9 @@ class Solution:
             tx = l2
             l2 = l2.next
             rx = L2
+        
+        if not rx:
+            rx = L1
         
         if c != 0:
             tx.next = ListNode(c)
