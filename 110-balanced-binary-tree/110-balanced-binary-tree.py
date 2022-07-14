@@ -14,11 +14,11 @@ class Solution:
                 return 0
             lx = 0
             rx = 0
-            lx = dfs(node.left)
-            rx = dfs(node.right)
+            lx = 1 + dfs(node.left)
+            rx = 1 + dfs(node.right)
             if abs(lx - rx) > 1:
                 valid = False
-            return 1 + max(lx, rx)
+            return max(lx, rx)
                 
         dfs(root)
         return valid
