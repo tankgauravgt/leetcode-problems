@@ -1,8 +1,26 @@
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         
-        fwd_cost = [cost[0], cost[1]]
-        for ix in range(2, len(cost), 1):
-            fwd_cost.append(min(fwd_cost[ix - 1], fwd_cost[ix - 2]) + cost[ix])
-            
-        return min(fwd_cost[-1], fwd_cost[-2])
+        memo = {}
+        def rec(n):
+            nonlocal memo
+            if n == 0:
+                if n not in memo:
+                    memo[0] = cost[0]
+                return memo[0]
+            elif n == 1:
+                if n not in memo:
+                    memo[1] = cost[1]
+                return memo[1]
+            else:
+                if n not in memo:
+                    lmin = rec(n - 1) + cost[n]
+                    rmin = rec(n - 2) + cost[n]
+                    memo[n] = min(lmin, rmin)
+                return memo[n]
+        
+        rec(len(cost) - 1)
+        if len(cost) > 2:
+            return min(memo[len(cost) - 1], memo[len(cost) - 2])
+        else:
+            return min(cost)
