@@ -1,23 +1,35 @@
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        final_len = len(nums1) + len(nums2)
-        half_len = final_len//2
-        if len(nums1) > len(nums2): A, B = nums2, nums1
-        else: A, B = nums1, nums2
-        left, right = 0, len(A)-1
-        while True:
-            midA = (left + right)//2
-            midB = half_len - midA - 2
+        
+        if len(nums1) > len(nums2):
+            nums1, nums2 = nums2, nums1
+        
+        # full length:
+        fL = len(nums1) + len(nums2)
+        
+        # half length:
+        hL = fL // 2
+        
+        def bin_median(lx, rx):
+            nonlocal nums1, nums2, hL, fL
             
-            left_A = A[midA] if midA >= 0 else float("-infinity")
-            right_A = A[midA + 1] if (midA + 1) < len(A) else float("infinity")
+            mx1 = (rx + lx) // 2
+            mx2 = hL - mx1 - 2
             
-            left_B = B[midB] if midB >= 0 else float("-infinity")
-            right_B = B[midB + 1] if (midB + 1) < len(B) else float("infinity")
+            a1 = -float('inf') if mx1 < 0 else nums1[mx1]
+            a2 = float('inf') if (1 + mx1) >= len(nums1) else nums1[1 + mx1]
+            b1 = -float('inf') if mx2 < 0 else nums2[mx2]
+            b2 = float('inf') if (1 + mx2) >= len(nums2) else nums2[1 + mx2]
             
-            if left_A <= right_B  and left_B <= right_A:
-                if final_len % 2:
-                    return min(right_A, right_B)
-                else: return (max(left_A, left_B) + min(right_A, right_B)) / 2
-            elif left_A > right_B: right = midA - 1
-            else: left = midA + 1
+            if a1 <= b2 and b1 <= a2:
+                if fL % 2 == 1:
+                    return min(a2, b2)
+                else:
+                    return (max(a1, b1) + min(a2, b2)) / 2
+            else:
+                if a1 > b2:
+                    return bin_median(lx, mx1 - 1)
+                else:
+                    return bin_median(mx1 + 1, rx)
+        
+        return bin_median(0, len(nums1) - 1)
