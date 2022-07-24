@@ -1,11 +1,13 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
         
-        if n == 1:
-            return 1
+        memo = {}
+        def rec(n):
+            nonlocal memo
+            if n <= 2:
+                return n
+            if n not in memo:
+                memo[n] = rec(n - 1) + rec(n - 2)
+            return memo[n]
         
-        t1 = 1
-        t2 = 2
-        for ix in range(n - 2):
-            t1, t2 = t2, t1 + t2
-        return t2
+        return rec(n)
