@@ -18,15 +18,12 @@ class Solution:
                 if target == (node.val + sum(buf)):
                     valid = True
                 return
-            else:
-                if node.left:
-                    buf.append(node.val)
-                    bt(node.left, target)
-                    buf.pop()
-                if node.right:
-                    buf.append(node.val)
-                    bt(node.right, target)
-                    buf.pop()
+            buf.append(node.val)
+            if node.left:
+                bt(node.left, target)
+            if node.right:
+                bt(node.right, target)
+            buf.pop()
         
         bt(root, targetSum)
         return valid
