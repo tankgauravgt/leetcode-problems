@@ -9,8 +9,4 @@ class Solution:
         
         for rx in range(N // 2):
             for cx in range((1 + N) // 2):
-                crx = N - rx - 1
-                ccx = N - cx - 1
-                # print(m[rx][cx], m[N - cx - 1][rx], m[N - rx - 1][N - cx - 1], m[cx][N - rx - 1])
-                m[rx][cx], m[N - cx - 1][rx], m[N - rx - 1][N - cx - 1], m[cx][N - rx - 1] = m[N - cx - 1][rx], m[N - rx - 1][N - cx - 1], m[cx][N - rx - 1], m[rx][cx]
-                
+                m[rx][cx], m[N-cx-1][rx], m[N-rx-1][N-cx-1], m[cx][N-rx-1] = m[N-cx-1][rx], m[N-rx-1][N-cx-1], m[cx][N-rx-1], m[rx][cx]
