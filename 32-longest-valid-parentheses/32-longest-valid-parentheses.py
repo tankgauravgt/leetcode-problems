@@ -7,7 +7,6 @@ class Solution:
                 stk.pop()
             else:
                 stk.append((ix, c))
-        
         stk.append((len(s), '$'))
         
         longest = 0
