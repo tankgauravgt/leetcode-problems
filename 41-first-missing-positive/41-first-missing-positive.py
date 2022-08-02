@@ -11,7 +11,7 @@ class Solution:
                 if nums[val - 1] > 0:
                     nums[val - 1] = -1 * nums[val - 1]
                 elif nums[val - 1] == 0:
-                    nums[val - 1] = -(len(nums) + 1)
+                    nums[val - 1] = -(1 + len(nums))
         
         for ix in range(1, 1 + len(nums)):
             if nums[ix - 1] >= 0:
