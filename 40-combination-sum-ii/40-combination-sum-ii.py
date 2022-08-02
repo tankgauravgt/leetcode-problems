@@ -14,12 +14,13 @@ class Solution:
                     res.append(buf.copy())
                 return
             for ix in range(cx, len(rec)):
-                if rec[ix][1] > 0:
-                    buf.append(rec[ix][0])
-                    rec[ix] = (rec[ix][0], rec[ix][1] - 1)
-                    btrack(ix, rem - rec[ix][0], buf)
-                    rec[ix] = (rec[ix][0], rec[ix][1] + 1)
-                    buf.pop()
+                if rec[ix][0] <= rem:
+                    if rec[ix][1] > 0:
+                        buf.append(rec[ix][0])
+                        rec[ix] = (rec[ix][0], rec[ix][1] - 1)
+                        btrack(ix, rem - rec[ix][0], buf)
+                        rec[ix] = (rec[ix][0], rec[ix][1] + 1)
+                        buf.pop()
         
         btrack(0, target, [])
         return res
