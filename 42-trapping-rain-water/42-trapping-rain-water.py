@@ -4,24 +4,23 @@ class Solution:
         if len(height) <= 2:
             return 0
         
-        cmax = 0
-        lmax = []
-        for ix, n in enumerate(height):
-            cmax = max(cmax, n)
-            lmax.append(cmax)
+        lx = 0
+        rx = len(height) - 1
         
-        cmax = 0
-        rmax = []
-        for ix, n in enumerate(height[::-1]):
-            cmax = max(cmax, n)
-            rmax.append(cmax)
-        rmax = rmax[::-1]
+        lmax = height[lx]
+        rmax = height[rx]
         
         total = 0
-        for cx, n in enumerate(height):
-            if cx == 0 or cx == len(height) - 1:
-                continue
-            if (min(lmax[cx - 1], rmax[cx + 1]) - n) > 0:
-                total = total + (min(lmax[cx - 1], rmax[cx + 1]) - n)
-            
+        while rx > lx:
+            if height[rx] <= height[lx]:
+                if height[rx] <= rmax:
+                    total = total + (rmax - height[rx])
+                rmax = max(rmax, height[rx])
+                rx = rx - 1
+            else:
+                if height[lx] <= lmax:
+                    total = total + (lmax - height[lx])
+                lmax = max(lmax, height[lx])
+                lx = lx + 1
+        
         return total
