@@ -3,16 +3,8 @@ import bisect
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         
-        intervals.sort(key=lambda x: x[0])
         insert_ix = bisect.bisect_left(intervals, newInterval[0], 0, len(intervals), key=lambda x: x[0])
         intervals = intervals[0:insert_ix] + [newInterval] + intervals[insert_ix::]
-        
-        # [1, 3], [2, 5], [6, 9]
-        # ======================================
-        # ix = 0, lx = 0: [1, 3]
-        # ix = 1, lx = 0: [1, 5], [2, 5],
-        # ix = 2, lx = 0: [1, 5], [2, 5], [6, 9]
-        
         
         lx = 0
         for ix, curr in enumerate(intervals):
