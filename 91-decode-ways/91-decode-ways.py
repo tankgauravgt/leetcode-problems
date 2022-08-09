@@ -7,19 +7,17 @@ class Solution:
         def dfs(s, sx):
             nonlocal memo
             if sx == len(s):
-                memo[sx] = 1
-                return memo[sx]
+                return 1
             elif sx in memo:
                 return memo[sx]
             else:
                 total = 0
-                for ix in range(2):
-                    if (sx + ix + 1) <= len(s) and s[sx:sx + ix + 1] in rec:
-                        if (sx + ix + 1) not in memo:
-                            memo[sx + ix + 1] = dfs(s, sx + ix + 1)
-                        total += memo[sx + ix + 1]
-                    else:
-                        break
+                ex = 1 + sx
+                while ex <= len(s) and s[sx:ex] in rec:
+                    if ex not in memo:
+                        memo[ex] = dfs(s, ex)
+                    total += memo[ex]
+                    ex = ex + 1
                 return total
         
         return dfs(s, 0)
