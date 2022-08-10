@@ -14,7 +14,7 @@ class Solution:
                 found = False
                 for ex in range(1 + sx, 1 + sx + max_wlen):
                     if ex <= len(s) and s[sx:ex] in wordDict:
-                        if s[sx:ex] not in memo:
+                        if ex not in memo:
                             memo[ex] = btrack(s, ex)
                         found = found or memo[ex]
                 memo[sx] = found
