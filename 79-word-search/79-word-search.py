@@ -7,10 +7,8 @@ class Solution:
             if px == len(word):
                 found = True
                 return
-            if ix not in range(len(board)):
-                return
-            if jx not in range(len(board[0])):
-                return
+            if ix < 0 or ix >= len(board): return
+            if jx < 0 or jx >= len(board[0]): return
             if board[ix][jx] == word[px]:
                 board[ix][jx] = '.'
                 btrack(ix + 1, jx, 1 + px, word)
