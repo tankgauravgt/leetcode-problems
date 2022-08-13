@@ -13,12 +13,12 @@ class Solution:
         total = 0
         while rx > lx:
             if height[rx] <= height[lx]:
-                if height[rx] <= rmax:
+                if height[rx] < rmax:
                     total = total + (rmax - height[rx])
                 rmax = max(rmax, height[rx])
                 rx = rx - 1
             else:
-                if height[lx] <= lmax:
+                if height[lx] < lmax:
                     total = total + (lmax - height[lx])
                 lmax = max(lmax, height[lx])
                 lx = lx + 1
