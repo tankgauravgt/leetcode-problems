@@ -20,19 +20,19 @@ class Solution:
             return True
         
         
-        def backtrack():
+        def backtrack(sr, sc):
             nonlocal board, nR, nC
-            for rx in range(nR):
+            for rx in range(sr, nR):
                 for cx in range(nC):
                     if board[rx][cx] == '.':
                         for n in range(1, 10):
                             if isValid(rx, cx, str(n)):
                                 board[rx][cx] = str(n)
-                                if backtrack():
+                                if backtrack(sr, sc):
                                     return True
                                 else:
                                     board[rx][cx] = '.'
                         return False
             return True
         
-        backtrack()
+        backtrack(0, 0)
