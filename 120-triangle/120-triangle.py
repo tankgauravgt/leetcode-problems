@@ -1,16 +1,9 @@
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
         
-        if len(triangle) == 1:
-            return triangle[0][0]
+        if len(triangle) > 1:
+            for d in range(len(triangle) - 2, -1, -1):
+                for ix in range(len(triangle[d])):
+                    triangle[d][ix] = triangle[d][ix] + min(triangle[1 + d][ix], triangle[1 + d][1 + ix])
         
-        def dp(d):
-            nonlocal triangle
-            if d < 0:
-                return
-            for ix in range(1 + d):
-                triangle[d][ix] = triangle[d][ix] + min(triangle[1 + d][ix], triangle[1 + d][1 + ix])
-            dp(d - 1)
-        
-        dp(len(triangle) - 2)
         return triangle[0][0]
