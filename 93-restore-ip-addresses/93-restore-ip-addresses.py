@@ -3,12 +3,10 @@ class Solution:
         
         def valid(ip):
             nums = ip.split('.')
-            if len(nums) != 4:
+            if len(nums) != 4 or '' in nums:
                 return False
             for num in nums:
-                if len(num) == 0:
-                    return False
-                elif len(num) > 1 and num[0] == '0':
+                if len(num) > 1 and num[0] == '0':
                     return False
                 elif len(num) >= 1 and int(num) not in range(0, 256):
                     return False
