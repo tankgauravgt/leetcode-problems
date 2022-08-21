@@ -3,6 +3,8 @@ class Solution:
         
         def valid(ip):
             nums = ip.split('.')
+            if len(nums) != 4:
+                return False
             for num in nums:
                 if len(num) == 0:
                     return False
@@ -15,11 +17,11 @@ class Solution:
         out = []
         def btrack(ix, c, buf):
             nonlocal out
-            if ix == len(s):
+            if c > 3:
                 return
-            elif c == 3:
-                if valid("".join(buf) + s[ix::]):
-                    out.append("".join(buf) + s[ix::])
+            if ix == len(s):
+                if valid("".join(buf)):
+                    out.append("".join(buf))
                 return
             else:
                 buf.append(s[ix])
