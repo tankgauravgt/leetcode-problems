@@ -1,7 +1,7 @@
 class Solution:
     def hammingWeight(self, n: int) -> int:
-        def dnc(k):
+        def rec(k):
             if k == 0:
                 return 0
-            return (k % 2) + dnc(k // 2)
-        return dnc(n)
+            return (k % 2) + rec(k // 2)
+        return rec(n)
