@@ -1,12 +1,11 @@
 class Solution:
     def subtractProductAndSum(self, n: int) -> int:
         
-        arr = map(int, str(n))
+        temp = list(map(int, str(n)))
+        S = sum(temp)
         
-        _sum = 0
-        _prod = 1
-        for x in arr:
-            _sum += x
-            _prod *= x
-        
-        return _prod - _sum
+        P = 1
+        for ix, n in enumerate(temp):
+            P *= n
+            
+        return P - S
