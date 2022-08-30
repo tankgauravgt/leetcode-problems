@@ -27,5 +27,5 @@ class Solution:
                 dx_can = (l2[0] - l3[0])
                 if abs((dy_ref / dx_ref) - (dy_can / dx_can)) > 0.001:
                     return False
-                l1, l2 = l2, l3        
+                l1, l2 = l2, l3
         return True
