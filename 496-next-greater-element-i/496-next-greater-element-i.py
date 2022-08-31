@@ -2,7 +2,6 @@ class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
         
         res = [-1] * len(nums1)
-        
         rec = {n:ix for ix, n in enumerate(nums1)}
         
         stk = []
