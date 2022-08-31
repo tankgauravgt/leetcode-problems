@@ -3,13 +3,17 @@ class Solution:
         
         nge = [-1 for n in nums]
         
-        nums = nums * 2
-        
         stk = []
         for nx, n in enumerate(nums):
             while stk and stk[-1][1] < n:
                 ix, val = stk.pop()
-                nge[ix % (len(nums) // 2)] = n
+                nge[ix] = n
+            stk.append([nx, n])
+        
+        for nx, n in enumerate(nums):
+            while stk and stk[-1][1] < n:
+                ix, val = stk.pop()
+                nge[ix] = n
             stk.append([nx, n])
         
         return nge
