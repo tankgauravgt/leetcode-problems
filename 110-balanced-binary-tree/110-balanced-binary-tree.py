@@ -7,18 +7,11 @@
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         
-        valid = True
-        def dfs(node):
-            nonlocal valid
+        def getH(node):
             if not node:
-                return 0
-            lx = 0
-            rx = 0
-            lx = 1 + dfs(node.left)
-            rx = 1 + dfs(node.right)
-            if abs(lx - rx) > 1:
-                valid = False
-            return max(lx, rx)
-                
-        dfs(root)
-        return valid
+                return True, 0
+            lS, lH = getH(node.left)
+            rS, rH = getH(node.right)
+            return lS and rS and abs(lH - rH) <= 1, 1 + max(lH, rH)
+
+        return getH(root)[0]
