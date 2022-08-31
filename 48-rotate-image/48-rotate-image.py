@@ -4,9 +4,9 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
         
-        m = matrix        
-        N = len(matrix)
+        for ix in range(len(matrix)):
+            for jx in range(1 + ix, len(matrix[0])):
+                matrix[ix][jx], matrix[jx][ix] = matrix[jx][ix], matrix[ix][jx]
         
-        for rx in range((1 + N) // 2):
-            for cx in range(N // 2):
-                m[rx][cx], m[N-cx-1][rx], m[N-rx-1][N-cx-1], m[cx][N-rx-1] = m[N-cx-1][rx], m[N-rx-1][N-cx-1], m[cx][N-rx-1], m[rx][cx]
+        for rx, row in enumerate(matrix):
+            matrix[rx] = row[::-1]
