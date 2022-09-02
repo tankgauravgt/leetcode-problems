@@ -13,13 +13,15 @@ class Solution:
             temp = root
             while temp:
                 if val < temp.val:
-                    if temp.left == None:
+                    if temp.left:
+                        temp = temp.left
+                    else:
                         temp.left = TreeNode(val)
                         break
-                    temp = temp.left
                 if val > temp.val:
-                    if temp.right == None:
+                    if temp.right:
+                        temp = temp.right
+                    else:
                         temp.right = TreeNode(val)
                         break
-                    temp = temp.right
             return root
