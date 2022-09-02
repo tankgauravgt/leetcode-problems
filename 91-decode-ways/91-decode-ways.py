@@ -1,24 +1,27 @@
 class Solution:
-    def numDecodings(self, s: str) -> int:
-        
-        rec = {str(1 + ix):chr(ix + ord('a')) for ix in range(26)}
-        
+    def numDecodings(self, digits: str) -> int:
+
+        words = {
+            str(1 + ix): chr(ord("A") + ix) for ix in range(26)
+        }
+
         memo = {}
-        def dfs(s, sx):
+        def btrack(sx, mwlen):
             nonlocal memo
-            if sx == len(s):
+            if sx == len(digits):
                 return 1
-            elif sx in memo:
+
+            if sx in memo:
                 return memo[sx]
-            else:
-                total = 0
-                ex = 1 + sx
-                while ex <= len(s) and s[sx:ex] in rec:
-                    if ex not in memo:
-                        memo[ex] = dfs(s, ex)
-                    total += memo[ex]
-                    ex = ex + 1
-                memo[sx] = total
-                return total
-        
-        return dfs(s, 0)
+
+            total = 0
+            for ex in range(1 + sx + mwlen, sx, -1):
+                if digits[sx:ex] not in words:
+                    continue
+                else:
+                    total = total + btrack(ex, mwlen)
+            memo[sx] = total
+            return total
+                    
+        mlen = 2
+        return btrack(0, mlen)
