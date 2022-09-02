@@ -13,13 +13,14 @@ class Solution:
 
             if sx in memo:
                 return memo[sx]
-
+            
             total = 0
             for ex in range(1 + sx + mwlen, sx, -1):
                 if digits[sx:ex] not in words:
                     continue
                 else:
                     total = total + btrack(ex, mwlen)
+            
             memo[sx] = total
             return total
                     
