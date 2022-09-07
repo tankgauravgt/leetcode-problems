@@ -14,14 +14,12 @@ class Solution:
         if not node:
             return node
         
-        G = {}
+        G = {node.val: Node(node.val, [])}
         vrec = set([node.val])
         
         dq = deque([node])
         while dq:
             temp = dq.popleft()
-            if temp.val not in G:
-                G[temp.val] = Node(temp.val, [])
             for adj in temp.neighbors:
                 if adj.val not in G:
                     G[adj.val] = Node(adj.val, [])
