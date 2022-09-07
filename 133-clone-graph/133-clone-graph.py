@@ -11,20 +11,23 @@ class Node:
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
         
-        if not node: return None
+        if not node:
+            return node
         
-        fringe = deque([node])
-        clones = {node.val: Node(node.val, [])}
+        G = {}
+        vrec = set([node.val])
         
-        while fringe:
-            N = len(fringe)
-            for ix in range(N):
-                temp = fringe.popleft()
-                curr = clones[temp.val]
-                for adj in temp.neighbors:
-                    if adj.val not in clones:
-                        clones[adj.val] = Node(adj.val, [])
-                        fringe.append(adj)
-                    curr.neighbors.append(clones[adj.val])
+        dq = deque([node])
+        while dq:
+            temp = dq.popleft()
+            if temp.val not in G:
+                G[temp.val] = Node(temp.val, [])
+            for adj in temp.neighbors:
+                if adj.val not in G:
+                    G[adj.val] = Node(adj.val, [])
+                if adj.val not in vrec:
+                    vrec.add(adj.val)
+                    dq.append(adj)
+                G[temp.val].neighbors.append(G[adj.val])
         
-        return clones[node.val]
+        return G[node.val]
