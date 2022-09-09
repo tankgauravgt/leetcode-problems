@@ -14,7 +14,7 @@ class Solution:
                     x = temp[ix]
                     temp[ix] = chr(c)
                     candidate = "".join(temp)
-                    if candidate in wordset:
+                    if candidate in wordset and candidate not in rec:
                         neighbors.append("".join(temp))
                     temp[ix] = x
             return neighbors
