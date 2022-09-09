@@ -8,13 +8,15 @@ class Solution:
         rec = set([beginWord])
         def get_neighbors(word):
             neighbors = []
+            temp = list(word)
             for ix in range(len(word)):
                 for c in range(ord('a'), 1 + ord('z')):
-                    temp = list(word)
+                    x = temp[ix]
                     temp[ix] = chr(c)
                     candidate = "".join(temp)
-                    if candidate in wordset and candidate not in rec:
+                    if candidate in wordset:
                         neighbors.append("".join(temp))
+                    temp[ix] = x
             return neighbors
         
         count = 1
