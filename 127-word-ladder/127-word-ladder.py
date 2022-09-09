@@ -28,9 +28,8 @@ class Solution:
                 if temp == endWord:
                     return count
                 for adj in get_neighbors(temp):
-                    if adj not in rec:
-                        rec.add(adj)
-                        dq.append(adj)
+                    rec.add(adj)
+                    dq.append(adj)
             count = count + 1
         
         return 0
