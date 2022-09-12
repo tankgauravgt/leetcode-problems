@@ -8,7 +8,7 @@ class Solution:
     def generateTrees(self, n: int) -> List[Optional[TreeNode]]:
         
         def genTrees(lx, rx):
-            if rx <= lx:
+            if rx == lx:
                 return [None]
             res = []
             for ix in range(lx, rx):
