@@ -13,32 +13,30 @@ class Solution:
         if not head:
             return None
         
-        rec = {}
-        temp = head
-        original_values = []
+        # fake label nodes:
+        labels = {}
         
-        count = 0
-        while temp != None:
-            original_values.append(temp.val)
-            temp.val = count
-            rec[temp.val] = Node(temp.val)
+        cnt = 0
+        temp = head
+        while temp:
+            labels[cnt] = temp.val
+            temp.val = cnt
             temp = temp.next
-            count = count + 1
+            cnt = cnt + 1
+        
+        nodes = {}
+        for ix in labels:
+            nodes[ix] = Node(ix)
 
-        
         temp = head
-        while temp != None:
+        while temp:
             if temp.next:
-                rec[temp.val].next = rec[temp.next.val]
+                nodes[temp.val].next = nodes[temp.next.val]
             if temp.random:
-                rec[temp.val].random = rec[temp.random.val]
+                nodes[temp.val].random = nodes[temp.random.val]
             temp = temp.next
         
-        count = 0
-        temp = rec[head.val]
-        while temp != None:
-            temp.val = original_values[count]
-            temp = temp.next
-            count = count + 1
+        for ix in labels:
+            nodes[ix].val = labels[ix]
         
-        return rec[head.val]
+        return nodes[head.val]
