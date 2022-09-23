@@ -3,26 +3,34 @@ from collections import deque
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         
-        G = {n: [] for n in range(numCourses)}
+        G = {ix: [] for ix in range(numCourses)}
+        
         for u, v in prerequisites:
             G[u].append(v)
         
-        pc = {n: 0 for n in G}
-        for u, v in prerequisites:
-            pc[v] = pc[v] + 1
+        init_nodes = []
+        for k, v in G.items():
+            if len(v) == 0:
+                init_nodes.append(k)
         
-        fringe = deque()
-        for n in G:
-            if pc[n] == 0:
-                fringe.append(n)
+        states = {n: 'to_be_visited' for n in G}
         
-        count = 0
-        while fringe:
-            temp = fringe.popleft()
-            for adj in G[temp]:
-                pc[adj] = pc[adj] - 1
-                if pc[adj] == 0:
-                    fringe.append(adj)
-            count = count + 1
+        def dfs_has_cycle(curr):
+            states[curr] = 'visiting'
+            
+            for adj in G[curr]:
+                if states[adj] == 'visited':
+                    continue
+                if states[adj] == 'visiting':
+                    return True
+                if dfs_has_cycle(adj):
+                    return True
+            
+            states[curr] = 'visited'
+            return False
         
-        return len(G) == count
+        for inode in G:
+            if states[inode] == 'to_be_visited':
+                if dfs_has_cycle(inode):
+                    return False
+        return True
