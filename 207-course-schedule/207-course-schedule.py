@@ -7,24 +7,22 @@ class Solution:
         for u, v in prerequisites:
             G[u].append(v)
         
-        states = {n: 'to_be_visited' for n in G}
+        states = {n: 'w' for n in G}
         
-        def dfs_has_cycle(curr):
-            states[curr] = 'visiting'
-            
+        def is_dag(curr):
+            states[curr] = 'g'
             for adj in G[curr]:
-                if states[adj] == 'visited':
+                if states[adj] == 'b':
                     continue
-                if states[adj] == 'visiting':
-                    return True
-                if dfs_has_cycle(adj):
-                    return True
-            
-            states[curr] = 'visited'
-            return False
+                if states[adj] == 'g':
+                    return False
+                if not is_dag(adj):
+                    return False
+            states[curr] = 'b'
+            return True
         
         for inode in G:
-            if states[inode] == 'to_be_visited':
-                if dfs_has_cycle(inode):
+            if states[inode] == 'w':
+                if not is_dag(inode):
                     return False
         return True
