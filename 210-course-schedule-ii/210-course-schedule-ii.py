@@ -39,8 +39,6 @@ class Solution:
                 dq.append(ix)
                 vrec.add(ix)
         
-        print(G, pcount)
-        
         out = 0
         res = []
         while dq:
