@@ -4,14 +4,8 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         
         G = {ix: [] for ix in range(numCourses)}
-        
         for u, v in prerequisites:
             G[u].append(v)
-        
-        init_nodes = []
-        for k, v in G.items():
-            if len(v) == 0:
-                init_nodes.append(k)
         
         states = {n: 'to_be_visited' for n in G}
         
