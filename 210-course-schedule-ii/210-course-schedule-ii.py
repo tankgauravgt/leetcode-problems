@@ -14,8 +14,9 @@ class Solution:
         
         states = {n: 'w' for n in G}
         
+        stk = []
         def is_dag(curr):
-            nonlocal states
+            nonlocal states, stk
             states[curr] = 'g'
             for adj in G[curr]:
                 if states[adj] == 'b':
@@ -24,6 +25,7 @@ class Solution:
                     return False
                 if not is_dag(adj):
                     return False
+            stk.append(curr)
             states[curr] = 'b'
             return True
         
@@ -32,22 +34,8 @@ class Solution:
                 if not is_dag(ix):
                     return []
         
-        dq = deque()
-        vrec = set()
-        for ix in pcount:
-            if pcount[ix] == 0:
-                dq.append(ix)
-                vrec.add(ix)
-        
-        out = 0
         res = []
-        while dq:
-            curr = dq.popleft()
-            res.append(curr)
-            for adj in G[curr]:
-                pcount[adj] = pcount[adj] - 1
-                if pcount[adj] == 0:
-                    dq.append(adj)
-                    vrec.add(adj)
+        while stk:
+            res.append(stk.pop())
         
         return res
