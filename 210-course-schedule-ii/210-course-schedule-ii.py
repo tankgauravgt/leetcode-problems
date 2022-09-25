@@ -7,14 +7,8 @@ class Solution:
         for u, v in prerequisites:
             G[v].append(u)
         
-        pcount = {n: 0 for n in G}
-        for u, v in G.items():
-            for c in v:
-                pcount[c] += 1
-        
-        states = {n: 'w' for n in G}
-        
         stk = []
+        states = {n: 'w' for n in G}
         def is_dag(curr):
             nonlocal states, stk
             states[curr] = 'g'
@@ -37,5 +31,4 @@ class Solution:
         res = []
         while stk:
             res.append(stk.pop())
-        
         return res
