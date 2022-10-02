@@ -4,15 +4,12 @@ class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         
         def qselect(nums, lx, rx):
-            px = ix = lx
-            while ix < rx:
+            px = lx
+            for ix in range(lx, rx):
                 if nums[ix] <= nums[rx]:
                     nums[ix], nums[px] = nums[px], nums[ix]
                     px = px + 1
-                    ix = ix + 1
-                else:
-                    ix = ix + 1
-            nums[ix], nums[px] = nums[px], nums[ix]
+            nums[rx], nums[px] = nums[px], nums[rx]
             return px
         
         lx = 0
