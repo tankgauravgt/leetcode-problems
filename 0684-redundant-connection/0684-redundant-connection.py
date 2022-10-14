@@ -9,7 +9,7 @@ class DSets:
     def find(self, x):
         y = self.rec.get(x, x)
         if y != x:
-            return self.find(y)
+            self.rec[x] = y = self.find(y)
         return y    
 
 class Solution:
