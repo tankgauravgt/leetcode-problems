@@ -1,8 +1,6 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         
-        coins.sort(reverse=True)
-        
         def dp(rem, coins, memo):
             if rem < 0:
                 return float('inf')
