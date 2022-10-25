@@ -7,10 +7,10 @@ class Solution:
         csum = 0
         cmax = 0
         for ix, n in enumerate(arr):
-            if csum < 0:
-                csum = 0
             csum = csum + n
             cmax = max(cmax, csum)
+            if csum < 0:
+                csum = 0
 
         if cmax == 0:
             return max(arr)
