@@ -4,6 +4,7 @@ class Solution:
     ##Complete this function
     #Function to find the sum of contiguous subarray with maximum sum.
     def maxSubArraySum(self,arr,N):
+        
         csum = 0
         cmax = 0
         for ix, n in enumerate(arr):
@@ -11,10 +12,8 @@ class Solution:
             cmax = max(cmax, csum)
             if csum < 0:
                 csum = 0
-
-        if cmax == 0:
-            return max(arr)
-        return cmax
+        
+        return cmax if cmax > 0 else max(arr)
 
 
 #{ 
