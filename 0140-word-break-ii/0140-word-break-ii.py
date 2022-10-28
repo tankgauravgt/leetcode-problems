@@ -1,7 +1,7 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
         
-        wordDict = list(wordDict)
+        wordDict = set(wordDict)
         
         res = []
         def rec(sx, buf, maxlen):
