@@ -22,4 +22,4 @@ class Solution:
             memo[(ix, csum)] = flag
             return flag
 
-        return dfs(nums, 0, 0, target // 2, {})
+        return dfs(tuple(nums), 0, 0, target // 2, {})
