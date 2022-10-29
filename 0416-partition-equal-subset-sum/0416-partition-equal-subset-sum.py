@@ -17,7 +17,8 @@ class Solution:
                 return memo[(ix, csum)]
             flag = False
             flag = flag or dfs(nums, 1 + ix, csum, target, memo)
-            flag = flag or dfs(nums, 1 + ix, csum + nums[ix], target, memo)
+            if not flag:
+                flag = flag or dfs(nums, 1 + ix, csum + nums[ix], target, memo)
             memo[(ix, csum)] = flag
             return flag
 
