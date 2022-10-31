@@ -14,26 +14,29 @@ class Solution:
                     adjs.append(((rx + dr, cx + dc), diff))
             return adjs
         
-        G = {ix: [] for ix in range(nR * nC)}
+        elist = []
         for rx in range(nR):
             for cx in range(nC):
+                src = nC * rx + cx
                 for adj, weight in get_neighbors(rx, cx):
-                    G[nC * rx + cx].append((nC * adj[0] + adj[1], weight))
+                    dest = nC * adj[0] + adj[1]
+                    elist.append((weight, src, dest))
+        elist.sort(reverse=True)
         
-        distances = [float('inf')] * (nR * nC)
-        distances[0] = 0
-        hq = [(0, 0)]
+        dset = {}
+        def find(rec, x):
+            rec[x] = y = rec.get(x, x)
+            if y != x:
+                rec[x] = y = find(rec, y)
+            return y
         
-        while hq:
-            dist, curr = heapq.heappop(hq)
-            if curr == nR * nC - 1:
-                return distances[curr]
-            if distances[curr] < dist:
-                continue
-            for adj, weight in G[curr]:
-                if distances[adj] <= max(distances[curr], weight):
-                    continue
-                distances[adj] = max(distances[curr], weight)
-                heapq.heappush(hq, (distances[adj], adj))
+        def union(rec, x, y):
+            rec[find(rec, y)] = find(rec, x)
         
-        return float('inf')
+        while elist:
+            w, s, d = elist.pop()
+            union(dset, s, d)
+            if find(dset, 0) == find(dset, nC * nR - 1):
+                return w
+        
+        return 0
