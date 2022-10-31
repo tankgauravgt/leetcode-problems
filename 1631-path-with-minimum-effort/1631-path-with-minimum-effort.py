@@ -28,6 +28,8 @@ class Solution:
             dist, curr = heapq.heappop(hq)
             if curr == nR * nC - 1:
                 return distances[curr]
+            if distances[curr] < dist:
+                continue
             for adj, weight in G[curr]:
                 if distances[adj] <= max(distances[curr], weight):
                     continue
