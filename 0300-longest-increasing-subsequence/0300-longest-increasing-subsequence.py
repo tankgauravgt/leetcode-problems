@@ -3,26 +3,14 @@ class Solution:
         
         if not nums:
             return 0
-
-        gmax = 0
-        def lis(ex, memo):
-            nonlocal gmax
-            if ex == 0:
-                return 1
-            if memo[ex] != -1:
-                return memo[ex]
-            cmax = 1
-            for sx in range(ex):
-                pmax = lis(sx, memo)
-                if nums[ex] <= nums[sx]:
-                    continue
-                cmax = max(cmax, 1 + pmax)
-            gmax = max(gmax, cmax)
-            memo[ex] = cmax
-            return cmax
-
-        memo = [-1] * len(nums)
-        memo[0] = 1
         
-        res = lis(len(nums) - 1, memo)
-        return max(memo)
+        dp = [0] * (1 + len(nums))
+        dp[0] = 0
+        for ix, n in enumerate(nums):
+            cmax = 0
+            for jx in range(0, ix):
+                if nums[jx] < nums[ix]:
+                    cmax = max(cmax, dp[1 + jx])
+            dp[1 + ix] = 1 + cmax
+        
+        return max(dp)
