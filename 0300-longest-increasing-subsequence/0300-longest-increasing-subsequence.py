@@ -4,7 +4,9 @@ class Solution:
         if not nums:
             return 0
 
+        gmax = 0
         def lis(ex, memo):
+            nonlocal gmax
             if ex == 0:
                 return 1
             if memo[ex] != -1:
@@ -15,6 +17,7 @@ class Solution:
                 if nums[ex] <= nums[sx]:
                     continue
                 cmax = max(cmax, 1 + pmax)
+            gmax = max(gmax, cmax)
             memo[ex] = cmax
             return cmax
 
