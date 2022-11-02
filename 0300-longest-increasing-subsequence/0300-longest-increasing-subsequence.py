@@ -1,9 +1,6 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         
-        if not nums:
-            return 0
-        
         dp = [0] * (1 + len(nums))
         dp[0] = 0
         for ix, n in enumerate(nums):
