@@ -9,12 +9,12 @@ class Solution:
         dp[0] = [-float('inf'), -float('inf')]
                 
         def rbinsearch(arr, lx, rx, target):
-            if rx >= lx:
+            while rx >= lx:
                 mid = lx + (rx - lx) // 2
                 if arr[mid][0] < target[0] and arr[mid][1] < target[1]:
-                    return rbinsearch(arr, mid + 1, rx, target)
+                    lx = mid + 1
                 else:
-                    return rbinsearch(arr, lx, mid - 1, target)
+                    rx = mid - 1
             return lx
         
         cmax = 0
