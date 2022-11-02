@@ -12,9 +12,9 @@ class Solution:
             while rx >= lx:
                 mid = lx + (rx - lx) // 2
                 if arr[mid][0] < target[0] and arr[mid][1] < target[1]:
-                    lx = mid + 1
+                    return rbinsearch(arr, mid + 1, rx, target)
                 else:
-                    rx = mid - 1
+                    return rbinsearch(arr, lx, mid - 1, target)
             return lx
         
         cmax = 0
