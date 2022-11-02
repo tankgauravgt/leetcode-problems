@@ -1,13 +1,15 @@
+import bisect
+
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         
-        dp = [0] * (1 + len(nums))
-        dp[0] = 0
-        for ix, n in enumerate(nums):
-            cmax = 0
-            for jx in range(0, ix):
-                if nums[jx] < nums[ix]:
-                    cmax = max(cmax, dp[1 + jx])
-            dp[1 + ix] = 1 + cmax
+        dp = [float('inf')] * (1 + len(nums))
+        dp[0] = -float('inf')
         
-        return max(dp)
+        max_slot = 0
+        for ix, n in enumerate(nums):
+            slot = bisect.bisect_left(dp, n)
+            dp[slot] = n
+            max_slot = max(max_slot, slot)
+        
+        return max_slot
