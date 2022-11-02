@@ -3,9 +3,6 @@ class Solution:
         
         N = len(nums)
         
-        nse = [0] * N
-        pge = [0] * N
-        
         lmax = nums[0]
         rmin = nums[N - 1]
         
