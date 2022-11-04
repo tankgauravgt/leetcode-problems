@@ -3,21 +3,19 @@ from collections import deque
 class Solution:
     def jump(self, nums: List[int]) -> int:
 
-        dq = deque([0])
-        vrec = set([0])
-        
-        cnt = 0
-        while dq:
-            mix = dq[-1]
-            N = len(dq)
-            for ix in range(N):
-                curr = dq.popleft()
-                if curr == len(nums) - 1:
-                    return cnt
-                for adj in range(mix, 1 + curr + nums[curr]):
-                    if adj not in vrec:
-                        vrec.add(adj)
-                        dq.append(adj)
-            cnt = cnt + 1
+        lx = 0
+        rx = 1
+        count = 0
+        while lx < rx:
+            next_lx = rx
+            next_rx = -1
+            for cx in range(lx, rx):
+                if cx == len(nums) - 1:
+                    return count
+                for nx in range(next_lx, 1 + cx + nums[cx]):
+                    next_rx = max(next_rx, 1 + nx)
+            lx = next_lx
+            rx = next_rx
+            count = count + 1
         
         return -1
