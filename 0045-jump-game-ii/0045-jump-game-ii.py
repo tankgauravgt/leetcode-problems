@@ -7,14 +7,12 @@ class Solution:
         rx = 1
         count = 0
         while lx < rx:
-            next_lx = rx
             next_rx = -1
             for cx in range(lx, rx):
                 if cx == len(nums) - 1:
                     return count
-                for nx in range(next_lx, 1 + cx + nums[cx]):
-                    next_rx = max(next_rx, 1 + nx)
-            lx = next_lx
+                next_rx = max(next_rx, 1 + cx + nums[cx])
+            lx = rx
             rx = next_rx
             count = count + 1
         
